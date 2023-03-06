@@ -1,0 +1,62 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class ejercicio_2_ingresoPorTeclado {
+    public static void main(String[] args) throws Exception {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String letras = "abcdefghijklmnñopqrstuvwxyz ab";
+        System.out.println("ingrese una frase a codificar");
+        String frase = reader.readLine();
+
+        System.out.println("ingrese cantidad de desplazamiento\ningrese 1 para un desplazamiento\ningrese 2 para dos desplazamientos");
+        int desplazamiento = Integer.parseInt(reader.readLine());
+
+        if (desplazamiento==1)
+            desplazamiento=1;
+        else if (desplazamiento==2)
+            desplazamiento=2;
+        else
+            System.out.println("numero incorrecto, reinicie el programa");
+
+
+
+        String textoCodificado = "";
+
+        char caracter;
+        for (int i = 0; i < frase.length(); i++) {
+            caracter = frase.charAt(i);
+
+            int pos = letras.indexOf(caracter);
+
+            textoCodificado += letras.charAt(pos + desplazamiento);
+
+        }
+        System.out.print(textoCodificado);
+
+        System.out.println("");
+
+        //decodificacion
+        String frase1 = textoCodificado;
+        String textoDecodificado = "";
+
+        char caracter1;
+        for (int i = 0; i < frase1.length(); i++) {
+            caracter1 = frase1.charAt(i);
+
+            int pos1 = letras.indexOf(caracter1);
+
+            if ((pos1-desplazamiento)==(-1)) {
+                textoDecodificado += letras.charAt(27);
+            } else if ((pos1-2)==(-2)){
+                textoDecodificado += letras.charAt(26);
+            } else {
+                textoDecodificado += letras.charAt(pos1 - desplazamiento);
+            }
+
+        }
+        System.out.print(textoDecodificado);
+        System.out.println("");
+        System.out.println("nota: se codifico y descodifico en el mismo ejercicio");
+
+    }
+}
